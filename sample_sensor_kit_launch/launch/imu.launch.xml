@@ -6,11 +6,15 @@
 
     <group>
       <push-ros-namespace namespace="tamagawa"/>
-      <node pkg="tamagawa_imu_driver" name="tag_serial_driver" exec="tag_serial_driver" if="$(var launch_driver)">
+      <node pkg="tamagawa_imu_driver" name="tag_can_driver" exec="tag_can_driver" if="$(var launch_driver)">
         <remap from="imu/data_raw" to="imu_raw"/>
         <param name="port" value="/dev/imu"/>
         <param name="imu_frame_id" value="tamagawa/imu_link"/>
       </node>
+      <include file="$(find-pkg-share ros2_socketcan)/launch/socket_can_receiver.launch.py">
+        <arg name="interface" value="can1" />
+        <arg name="from_can_bus_topic" value="/can/imu" />
+      </include>
     </group>
 
     <arg name="imu_raw_name" default="tamagawa/imu_raw"/>
