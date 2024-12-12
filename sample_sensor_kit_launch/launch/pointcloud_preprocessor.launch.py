@@ -37,8 +37,10 @@ def launch_setup(context, *args, **kwargs):
         parameters=[
             {
                 "input_topics": [
-                    "/sensing/lidar/top/pointcloud",
-                    "/sensing/lidar/top/pointcloud",
+                    #"/sensing/lidar/top/pointcloud",
+                    #"/sensing/lidar/top/pointcloud",
+                    "/lidar_points",
+                    "/lidar_points",
                 ],
                 "output_frame": LaunchConfiguration("base_frame"),
                 "input_twist_topic_type": "twist",
@@ -67,6 +69,7 @@ def generate_launch_description():
     add_launch_arg("use_multithread", "False")
     add_launch_arg("use_intra_process", "False")
     add_launch_arg("pointcloud_container_name", "pointcloud_container")
+    add_launch_arg("use_concat_filter", "True")
 
     set_container_executable = SetLaunchConfiguration(
         "container_executable",

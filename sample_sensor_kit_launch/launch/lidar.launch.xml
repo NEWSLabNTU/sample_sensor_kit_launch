@@ -24,6 +24,10 @@
         <arg name="vehicle_mirror_param_file" value="$(var vehicle_mirror_param_file)"/>
         <arg name="container_name" value="pointcloud_container"/>
       </include>
+      <node pkg="hesai_ros_driver" name="hesai_ros_driver" exec="hesai_ros_driver_node" if="$(var launch_driver)" respawn="true" respawn_delay="1.0">
+	      <param name="frame_id" value="hesai_lidar"/>
+	      <!--param name="frame_id" value="hesai_top_base_link"/-->
+      </node>
     </group>
 
     <!--group>
