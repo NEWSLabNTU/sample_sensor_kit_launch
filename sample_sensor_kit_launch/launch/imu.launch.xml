@@ -8,7 +8,6 @@
       <push-ros-namespace namespace="tamagawa"/>
       <node pkg="tamagawa_imu_driver" name="tag_can_driver" exec="tag_can_driver" if="$(var launch_driver)">
         <remap from="imu/data_raw" to="imu_raw"/>
-        <param name="port" value="/dev/imu"/>
         <param name="imu_frame_id" value="tamagawa/imu_link"/>
       </node>
       <include file="$(find-pkg-share ros2_socketcan)/launch/socket_can_receiver.launch.py">
